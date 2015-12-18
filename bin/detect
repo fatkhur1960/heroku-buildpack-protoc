@@ -1,0 +1,5 @@
+#! /bin/bash
+
+echo "heroku-buildpack-protoc"
+exit 0
+

@@ -1,0 +1,23 @@
+#! /bin/bash
+
+indent() {
+  sed -u 's/^/       /'
+}
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+ENV_DIR=$3
+
+echo "-----> Downloading protoc v3.0.0"
+
+cd $CACHE_DIR
+mkdir -p protoc/bin
+curl -L --output protoc/bin/protoc https://github.com/os72/protoc-jar/raw/master/bin_300/linux/protoc
+export PATH=$PATH:${CACHE_DIR}/protoc/bin
+chmod 755 ${CACHE_DIR}/protoc/bin/protoc
+protoc --version | indent
+
+echo "-----> Installing protobuf-php"
+cd $CACHE_DIR
+curl -L --output Protobuf-1.0.tgz https://github.com/tayama0324/heroku-buildpack-protoc/raw/master/opt/Protobuf-1.0.tgz
+pear install Protobuf-1.0.tgz
