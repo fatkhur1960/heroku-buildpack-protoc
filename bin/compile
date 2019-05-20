@@ -10,14 +10,8 @@ ENV_DIR=$3
 
 echo "-----> Downloading protoc v3.0.0"
 
-cd $CACHE_DIR
-mkdir -p protoc/bin
-curl -L --output protoc/bin/protoc https://github.com/os72/protoc-jar/raw/master/bin_300/linux/protoc
+wget https://github.com/protocolbuffers/protobuf/releases/download/v3.7.1/protoc-3.7.1-linux-x86_64.zip -O $CACHE_DIR/protoc-3.7.1-linux-x86_64.zip
+unzip $CACHE_DIR/protoc-3.7.1-linux-x86_64.zip -d $CACHE_DIR/protoc
 export PATH=$PATH:${CACHE_DIR}/protoc/bin
 chmod 755 ${CACHE_DIR}/protoc/bin/protoc
 protoc --version | indent
-
-echo "-----> Installing protobuf-php"
-cd $CACHE_DIR
-curl -L --output Protobuf-1.0.tgz https://github.com/tayama0324/heroku-buildpack-protoc/raw/master/opt/Protobuf-1.0.tgz
-pear install Protobuf-1.0.tgz
