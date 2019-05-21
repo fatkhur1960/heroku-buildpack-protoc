@@ -14,4 +14,5 @@ wget https://github.com/protocolbuffers/protobuf/releases/download/v3.7.1/protoc
 unzip $CACHE_DIR/protoc-3.7.1-linux-x86_64.zip -d $CACHE_DIR/protoc
 export PATH=$PATH:${CACHE_DIR}/protoc/bin
 chmod 755 ${CACHE_DIR}/protoc/bin/protoc
+echo $PATH
 protoc --version | indent
